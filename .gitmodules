@@ -1,0 +1,3 @@
+[submodule "AFK-Daily"]
+	path = AFK-Daily
+	url = https://github.com/zebscripts/AFK-Daily
