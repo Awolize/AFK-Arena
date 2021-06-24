@@ -1,5 +1,3 @@
-
-const path = require('path');
 const { dialog } = require('@electron/remote');
 const AU = require('ansi_up')
 var ansi_up = new AU.default;
@@ -24,18 +22,18 @@ function setStatus(msg) { getStatus().innerHTML = "Status: " + msg; getStatus().
 
 function startNox() {
     //command, args, callback
-    console.log(global.noxPath);
+    console.log(global.settings.noxPath);
 
-    command = global.noxPath;
+    command = global.settings.noxPath;
     run_script(`"${command.replaceAll('\\', '/')}"`);
     return;
 }
 
 function startScript() {
     //command, args, callback
-    command = global.bashPath;
-    scriptDir = path.dirname(global.scriptPath).replaceAll('\\', '/')
-    scriptName = path.basename(global.scriptPath).replaceAll('\\', '/')
+    command = global.settings.bashPath;
+    scriptDir = path.dirname(global.settings.scriptPath).replaceAll('\\', '/')
+    scriptName = path.basename(global.settings.scriptPath).replaceAll('\\', '/')
 
     args = ['-c ' + `"cd ${scriptDir}; ./${scriptName} -n"`]
     //"C:\Program Files\Git\bin\sh.exe" - c "cd /c/Users/alexs/Desktop/AFK-Daily-master/AFK-Daily"

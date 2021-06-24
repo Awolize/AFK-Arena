@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs')
 
 // Run every day at 06.00
 const schedule = require('node-schedule');
