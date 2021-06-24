@@ -9,7 +9,10 @@
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
     />
     <link rel="stylesheet" href="index.css" />
-    <script defer src="index.js"></script>
+    <script defer src="helper.js" type="text/javascript"></script>
+    <script defer src="index.js" type="text/javascript"></script>
+    <script defer src="saveHandler.js" type="text/javascript"></script>
+    <script defer src="configTab.js" type="text/javascript"></script>
   </head>
 
   <body class="has-text-centered">
@@ -29,6 +32,7 @@
         <ul>
           <li><a>Run</a></li>
           <li><a>Settings</a></li>
+          <li><a>Edit Config</a></li>
         </ul>
       </div>
 
@@ -42,8 +46,17 @@
           <hr
             style="height: 2px; border-width: 0; width: 50%; margin: 30px auto"
           />
+
           <p id="status">Status:</p>
+
           <p id="command-output" style="text-align: left"></p>
+          <button
+            id="clearLogs"
+            class="button is-warning"
+            style="margin-top: 10px"
+          >
+            Clear
+          </button>
         </section>
         <!-- Settings Content -->
         <section class="tab-content">
@@ -119,6 +132,11 @@
               <button id="resetButton" class="button is-warning">Clear</button>
             </li>
           </ul>
+        </section>
+        <!-- Edit Config -->
+        <section class="tab-content">
+          <div id="configFileTitles">titles file</div>
+          <p id="configFileContent">content file</p>
         </section>
       </div>
     </div>

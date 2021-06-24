@@ -1,4 +1,0 @@
-[submodule "AFK-Daily"]
-	path = AFK-Arena-Script
-	url = https://github.com/zebscripts/AFK-Daily
-    branch = master

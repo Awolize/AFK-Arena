@@ -9,7 +9,7 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
     app.quit();
 }
 
-var iconpath = path.join(__dirname, 'react_logo.png') // path of y
+var iconPath = path.join(__dirname, '../icon.ico') // path of y
 let mainWindow;
 let tray = null;
 
@@ -20,7 +20,7 @@ const job = schedule.scheduleJob('*/5 * * * *', function () {
 
 
 function createTray() {
-    tray = new Tray(iconpath)
+    tray = new Tray(iconPath)
 
     var contextMenu = Menu.buildFromTemplate([
         {
@@ -53,14 +53,25 @@ function clearTray() {
 const createMainWindow = () => {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
-        width: 925 + (config.debug ? 200 : 0),
-        height: 950,
+        width: 925, //(config.debug ? 200 : 0)
+        height: 980,
+        frame: true,
+        icon: iconPath,
         webPreferences: {
             enableRemoteModule: true,
             nodeIntegration: true,
             contextIsolation: false,
         }
     });
+
+    // Open the DevTools.
+    if (config.debug) {
+        devtools = new BrowserWindow()
+        mainWindow.webContents.setDevToolsWebContents(devtools.webContents)
+        mainWindow.webContents.openDevTools({ mode: 'detach' })
+    }
+
+    mainWindow.setMenuBarVisibility(false)
 
     // and load the index.html of the app.
     mainWindow.loadFile(path.join(__dirname, '/main/index.html'));
@@ -79,10 +90,6 @@ const createMainWindow = () => {
         mainWindow.hide()
         createTray()
     })
-
-    // Open the DevTools.
-    if (config.debug)
-        mainWindow.webContents.openDevTools();
 
     return mainWindow;
 };
